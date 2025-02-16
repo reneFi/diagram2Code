@@ -1,0 +1,3 @@
+[submodule "src/input/plantuml"]
+	path = src/input/plantuml
+	url = https://github.com/reneFi/PlantUMLTree.git
