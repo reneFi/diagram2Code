@@ -97,18 +97,6 @@ def test_state_insert_outgoing_transition_to_two_states():
 
     assert state_first.transitions ==  [ transition_first_second , transition_first_third ]
 
-def test_state_insert_incoming_transition_from_two_states():
-    """
-    Test if states can be inserted
-    """
-    state_first = State("first")
-    state_second = State("second")
-    state_third = State("third")
-
-    transition_first_second = Transition(state_second, state_first)
-    transition_first_third = Transition(state_third, state_first)
-
-    assert state_first.transitions == [ transition_first_second ,  transition_first_third ]
 #
 # fsm tests
 #
@@ -162,3 +150,40 @@ def test_traversing_statemachine_with_one_state_returns_one_state():
 
     assert len(statemachine.get_states()) == 1
     assert statemachine.get_states() == [ state ]
+
+def test_traversing_statemachine_with_three_states_returns_three_state():
+    """Test the statemachine with three state"""
+
+    # +-------------------+
+    # |                   |
+    # |                   |
+    # |                   |
+    # +---------+---------+
+    #           |          
+    #           |          
+    #           |          
+    # +---------v---------+
+    # |                   |
+    # |                   |
+    # |                   |
+    # +---------+---------+
+    #           |          
+    #           |          
+    #           |          
+    # +---------v---------+
+    # |                   |
+    # |                   |
+    # |                   |
+    # +-------------------+
+
+    state1 = State("one")
+    state2 = State("two")
+    state3 = State("three")
+    transition1 = InitialTransition(state1)
+    Transition(state1,state2)
+    Transition(state2,state3)
+    statemachine = StateMachine("test")
+    statemachine.insert_initial_transition(transition1)
+
+    assert len(statemachine.get_states()) == 3
+    assert statemachine.get_states() == [ state1 , state2 , state3 ]

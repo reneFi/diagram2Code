@@ -25,7 +25,15 @@ class State(NamedObject):
     def __init__(self,name):
         super().__init__(name)
         self.transitions = []
-       
+    
+    def getConnectedStates(self):
+        states = []
+        for transition in self.transitions:
+            states.append(transition.end_state)
+            connected_states = transition.end_state.getConnectedStates()
+            for state in connected_states:
+                states.append(state)
+        return states   
     
 class Transition:
     """ This class represents a transition between two states"""
@@ -34,8 +42,6 @@ class Transition:
         if not start_state is None:
             start_state.transitions.append(self)
         self.end_state = end_state
-        if not end_state is None:
-            end_state.transitions.append(self)
         self.trigger = trigger
         self.action = action
     
@@ -106,4 +112,7 @@ class StateMachine(NamedObject):
         states = []
         if not self.initial_transition is None:
             states.append(self.initial_transition.end_state)
+            connected_states = self.initial_transition.end_state.getConnectedStates()
+            for state in connected_states:
+                states.append(state)
         return states
