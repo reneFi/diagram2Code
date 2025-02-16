@@ -10,13 +10,13 @@ class NamedObject:
         This method returns the name of the object
         """
         return self._name
-    
+
     @name.setter
     def name(self, name):
         """Set the name of the state machine."""
         self._name = name
 
-    
+
 
 class State(NamedObject):
     """ 
@@ -25,16 +25,17 @@ class State(NamedObject):
     def __init__(self,name):
         super().__init__(name)
         self.transitions = []
-    
-    def getConnectedStates(self):
+
+    def get_connected_states(self):
+        """ This method collects recursively the connected states"""
         states = []
         for transition in self.transitions:
             states.append(transition.end_state)
-            connected_states = transition.end_state.getConnectedStates()
+            connected_states = transition.end_state.get_connected_states()
             for state in connected_states:
                 states.append(state)
-        return states   
-    
+        return states
+
 class Transition:
     """ This class represents a transition between two states"""
     def __init__(self,start_state = None, end_state = None, trigger = None, action = None):
@@ -44,21 +45,19 @@ class Transition:
         self.end_state = end_state
         self.trigger = trigger
         self.action = action
-    
-    
+
     def is_dangling(self):
         """
         Tests if transition is initial transisition
         """
         return self.start_state is None and self.end_state is None
 
-   
     def is_initial_transition(self):
         """
         Tests if transition is initial transisition
         """
         return self.start_state is None
-    
+
     @property
     def is_final_state(self):
         """
@@ -112,7 +111,7 @@ class StateMachine(NamedObject):
         states = []
         if not self.initial_transition is None:
             states.append(self.initial_transition.end_state)
-            connected_states = self.initial_transition.end_state.getConnectedStates()
+            connected_states = self.initial_transition.end_state.get_connected_states()
             for state in connected_states:
                 states.append(state)
         return states

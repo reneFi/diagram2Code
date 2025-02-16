@@ -3,7 +3,7 @@
 # Copyright 2024 René Fischer - renefischer@fischer-homenet.de
 #
 # MIT License
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -13,7 +13,7 @@
 #
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -50,7 +50,8 @@ def test_initial_transition_connected():
 def test_final_transition_connected():
     """
     Test if a final transition with start state is connected. 
-    This implies that Transition is also connected because one the two end points are connected to a state
+    This implies that Transition is also connected because the 
+    end points are connected to a state
     """
 
     transition1 = FinalTransition(State("State1"))
@@ -63,7 +64,7 @@ def test_transition_state_connection():
     state = State("test")
     final_transition = FinalTransition(state)
     initial_transition = InitialTransition(state)
-    
+
     assert final_transition.start_state == state
     assert final_transition.end_state is None
     assert initial_transition.start_state is None
@@ -83,7 +84,7 @@ def test_state_insert_one_transition():
     state_first.transitions.append(transition_first_second)
 
     assert state_first.transitions.pop() == transition_first_second
-    
+
 def test_state_insert_outgoing_transition_to_two_states():
     """
     Test if states can be inserted
@@ -159,17 +160,17 @@ def test_traversing_statemachine_with_three_states_returns_three_state():
     # |                   |
     # |                   |
     # +---------+---------+
-    #           |          
-    #           |          
-    #           |          
+    #           |
+    #           |
+    #           |
     # +---------v---------+
     # |                   |
     # |                   |
     # |                   |
     # +---------+---------+
-    #           |          
-    #           |          
-    #           |          
+    #           |
+    #           |
+    #           |
     # +---------v---------+
     # |                   |
     # |                   |
