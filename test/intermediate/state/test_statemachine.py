@@ -50,7 +50,8 @@ def test_initial_transition_connected():
 def test_final_transition_connected():
     """
     Test if a final transition with start state is connected. 
-    This implies that Transition is also connected because one the two end points are connected to a state
+    This implies that Transition is also connected because the 
+    end points are connected to a state
     """
 
     transition1 = FinalTransition(State("State1"))
@@ -63,7 +64,7 @@ def test_transition_state_connection():
     state = State("test")
     final_transition = FinalTransition(state)
     initial_transition = InitialTransition(state)
- 
+
     assert final_transition.start_state == state
     assert final_transition.end_state is None
     assert initial_transition.start_state is None
@@ -159,17 +160,17 @@ def test_traversing_statemachine_with_three_states_returns_three_state():
     # |                   |
     # |                   |
     # +---------+---------+
-    #           |          
-    #           |          
-    #           |          
+    #           |
+    #           |
+    #           |
     # +---------v---------+
     # |                   |
     # |                   |
     # |                   |
     # +---------+---------+
-    #           |          
-    #           |          
-    #           |          
+    #           |
+    #           |
+    #           |
     # +---------v---------+
     # |                   |
     # |                   |
