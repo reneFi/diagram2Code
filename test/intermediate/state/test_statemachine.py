@@ -3,7 +3,7 @@
 # Copyright 2024 René Fischer - renefischer@fischer-homenet.de
 #
 # MIT License
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -13,7 +13,7 @@
 #
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -63,7 +63,7 @@ def test_transition_state_connection():
     state = State("test")
     final_transition = FinalTransition(state)
     initial_transition = InitialTransition(state)
-    
+ 
     assert final_transition.start_state == state
     assert final_transition.end_state is None
     assert initial_transition.start_state is None
@@ -83,7 +83,7 @@ def test_state_insert_one_transition():
     state_first.transitions.append(transition_first_second)
 
     assert state_first.transitions.pop() == transition_first_second
-    
+
 def test_state_insert_outgoing_transition_to_two_states():
     """
     Test if states can be inserted
